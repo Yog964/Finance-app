@@ -1,0 +1,113 @@
+/* --- Upcoming Features (Roadmap) --- */
+.roadmap-section {
+    margin-top: 4rem;
+    padding: 2.5rem;
+    background: white;
+    border-radius: var(--radius-xl);
+    border: 1px dashed var(--border-light);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Subtle background pattern */
+.roadmap-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: repeating-linear-gradient(90deg, var(--primary) 0, var(--primary) 10px, transparent 10px, transparent 20px);
+    opacity: 0.3;
+}
+
+.roadmap-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+.roadmap-section h3 {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--secondary);
+    margin: 0;
+}
+
+.roadmap-badge {
+    background: #fef3c7;
+    color: #d97706;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    letter-spacing: 0.05em;
+}
+
+.roadmap-desc {
+    color: var(--text-muted);
+    margin-bottom: 2.5rem;
+    font-size: 1rem;
+}
+
+.roadmap-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.5rem;
+}
+
+.roadmap-card {
+    background: var(--input-bg);
+    padding: 1.25rem 1.5rem;
+    border-radius: var(--radius-lg);
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    border: 1px solid transparent;
+    width: max-content;
+    transition: all 0.2s ease;
+}
+
+.roadmap-card:hover {
+    background: white;
+    border-color: var(--border-light);
+    box-shadow: var(--shadow-md);
+    transform: translateY(-2px);
+}
+
+.roadmap-icon {
+    font-size: 1.25rem;
+}
+
+.roadmap-card h4 {
+    margin: 0;
+    font-size: 0.95rem;
+    color: var(--text-main);
+    font-weight: 600;
+}
+
+@media (max-width: 600px) {
+    .roadmap-section {
+        padding: 1.5rem 1rem;
+    }
+
+    .roadmap-header {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .roadmap-grid {
+        gap: 1rem;
+    }
+
+    .roadmap-card {
+        width: 100%;
+        /* Full width on mobile for easier tapping */
+        justify-content: center;
+    }
+}

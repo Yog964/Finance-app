@@ -1,0 +1,258 @@
+.result-card {
+    margin-top: 3rem;
+    background: white;
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-xl);
+    border: 1px solid var(--border-light);
+    overflow: hidden;
+    animation: fadeUp 0.5s ease-out;
+}
+
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Header Section */
+.result-header {
+    background: var(--secondary);
+    color: white;
+    padding: 2rem;
+    text-align: center;
+}
+
+.result-title {
+    margin: 0;
+    font-size: 1.1rem;
+    font-weight: 600;
+    opacity: 0.9;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+}
+
+.result-primary-value {
+    font-size: 3rem;
+    /* Big impact number */
+    font-weight: 800;
+    line-height: 1;
+    letter-spacing: -0.03em;
+}
+
+.result-primary-label {
+    font-size: 0.9rem;
+    opacity: 0.8;
+    margin-top: 0.5rem;
+}
+
+/* Summary Grid */
+.result-body {
+    padding: 2rem;
+}
+
+.result-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.result-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    padding: 1rem;
+    background: var(--input-bg);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border-light);
+}
+
+.result-label {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.result-value {
+    font-size: 1.25rem;
+    color: var(--secondary);
+    font-weight: 700;
+    font-feature-settings: 'tnum';
+}
+
+.result-value.success {
+    color: var(--success);
+}
+
+/* Breakdown Tables */
+.tax-breakdown,
+.deduction-breakdown {
+    margin-top: 2.5rem;
+}
+
+.breakdown-title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--secondary);
+    margin-bottom: 1rem;
+    padding-left: 0.5rem;
+    border-left: 4px solid var(--primary);
+}
+
+.breakdown-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.95rem;
+}
+
+.breakdown-header {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1.5fr 1fr;
+    padding: 0.75rem 1rem;
+    background: var(--input-bg);
+    border-bottom: 1px solid var(--border-light);
+    font-weight: 600;
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    text-transform: uppercase;
+}
+
+.breakdown-row {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1.5fr 1fr;
+    padding: 1rem;
+    border-bottom: 1px solid var(--border-light);
+    color: var(--text-main);
+    align-items: center;
+}
+
+.breakdown-row:last-child {
+    border-bottom: none;
+}
+
+.breakdown-rate {
+    font-weight: 600;
+    color: var(--primary);
+    background: #eef2ff;
+    padding: 2px 8px;
+    border-radius: 4px;
+    display: inline-block;
+    font-size: 0.85rem;
+}
+
+.breakdown-amount,
+.breakdown-tax {
+    text-align: right;
+    font-weight: 600;
+    font-feature-settings: 'tnum';
+}
+
+/* Deduction List */
+.deduction-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.deduction-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem 1.25rem;
+    background: #fff;
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-md);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.deduction-item span:first-child {
+    color: var(--text-muted);
+    font-weight: 500;
+}
+
+.deduction-item span:last-child {
+    color: var(--success);
+    font-weight: 700;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .result-card {
+        margin-top: 2rem;
+        border-radius: var(--radius-lg);
+    }
+
+    .result-header {
+        padding: 1.5rem 1rem;
+    }
+
+    .result-primary-value {
+        font-size: 2.25rem;
+    }
+
+    .result-body {
+        padding: 1.5rem 1rem;
+    }
+
+    .result-grid {
+        grid-template-columns: 1fr;
+        /* Stack results vertically on mobile */
+        gap: 0.75rem;
+    }
+
+    .breakdown-header {
+        display: none;
+    }
+
+    .breakdown-row {
+        grid-template-columns: 1fr;
+        gap: 0.25rem;
+        padding: 1rem;
+        background: var(--input-bg);
+        margin-bottom: 0.75rem;
+        border-radius: var(--radius-md);
+        border: 1px solid var(--border-light);
+    }
+
+    .breakdown-row span {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+    }
+
+    /* Mobile Table Labels */
+    .breakdown-range::before {
+        content: "Range:";
+        color: var(--text-muted);
+        font-weight: 500;
+        font-size: 0.85rem;
+    }
+
+    .breakdown-rate::before {
+        content: "Rate:";
+        color: var(--text-muted);
+        font-weight: 500;
+        font-size: 0.85rem;
+    }
+
+    .breakdown-amount::before {
+        content: "Taxable:";
+        color: var(--text-muted);
+        font-weight: 500;
+        font-size: 0.85rem;
+    }
+
+    .breakdown-tax::before {
+        content: "Tax:";
+        color: var(--text-muted);
+        font-weight: 500;
+        font-size: 0.85rem;
+    }
+}
