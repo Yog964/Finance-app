@@ -101,7 +101,7 @@ function App() {
       </main>
 
       <footer className="footer">
-        <p>© 2026 Income Tax Calculator | For informational purposes only |SPB</p>
+        <p>© 2026 Income Tax Calculator | For informational purposes only | @Yog964 </p>
         <p className="footer-note">Please consult a tax professional for accurate tax planning</p>
       </footer>
     </div>
