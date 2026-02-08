@@ -1,5 +1,6 @@
 # Income Tax Calculator
 <img width="463" height="175" alt="image" src="https://github.com/user-attachments/assets/fb9d383d-07a7-4fd0-aff6-256cffcf5744" />
+<img width="99" height="96" alt="image" src="https://github.com/user-attachments/assets/36a63ef5-ef47-4df8-8cad-ad5e3af7e002" />
 
 A modern, frontend-only Income Tax Calculator web application built with React JS for calculating Indian Income Tax based on FY 2023-24 tax slabs.
 
