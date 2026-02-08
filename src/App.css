@@ -4,16 +4,16 @@
   --primary: #4338ca;
   --primary-light: #6366f1;
   --primary-dark: #312e81;
-  --secondary: #0f172a;
+  --secondary: #4f78d8;
   --success: #059669;
-  --success-bg: #d1fae5;
+  --success-bg: #a8aeab;
 
   --bg-body: #f8fafc; /* Slightly lighter for better contrast */
   --bg-card: #ffffff;
   --text-main: #1e293b;
   --text-muted: #64748b;
 
-  --border-light: #e2e8f0;
+  --border-light: #0c121a;
   --input-bg: #f8fafc;
 
   /* Shadows - Layered for realism */
@@ -26,6 +26,33 @@
   --radius-xl: 1.25rem;
   
   --transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.dev-banner {
+  width: 100%;
+  overflow: hidden;
+  background: #fff3cd;
+  border-bottom: 1px solid #ffe69c;
+  padding: 8px 0;
+  position: relative;
+}
+
+.marquee {
+  display: inline-block;
+  white-space: nowrap;
+  font-size: 14px;
+  font-weight: 500;
+  color: #664d03;
+  padding-left: 100%;
+  animation: scroll-right-to-left 12s linear infinite;
+}
+
+@keyframes scroll-right-to-left {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
 }
 
 body {

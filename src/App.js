@@ -11,7 +11,11 @@ function App() {
   return (
     <div className="App">
       <Navbar />
-
+<div class="dev-banner">
+  <div class="marquee">
+    🚧 App under development — some features may be unavailable.
+  </div>
+</div>
       <main className="main-content">
         <div className="container">
           {/* Mode Selection Tabs */}
