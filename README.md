@@ -183,3 +183,4 @@ Feel free to fork this project and submit pull requests for any improvements.
 ---
 
 **Disclaimer**: This calculator is for informational purposes only. Please consult with a qualified tax professional for accurate tax planning and filing.
+Last Updated -- 9 Feb 2026
