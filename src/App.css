@@ -2,10 +2,10 @@
 :root {
   /* Modern Fintech Palette - Refined */
   --primary: #4338ca;
-  --primary-light: #6366f1;
+  --primary-light: #1d1f8c;
   --primary-dark: #312e81;
   --secondary: #4f78d8;
-  --success: #059669;
+  --success: #0bbb83;
   --success-bg: #a8aeab;
 
   --bg-body: #f8fafc; /* Slightly lighter for better contrast */
@@ -30,7 +30,7 @@
 .dev-banner {
   width: 100%;
   overflow: hidden;
-  background: #fff3cd;
+  background: #f7ebc4b3;
   border-bottom: 1px solid #ffe69c;
   padding: 8px 0;
   position: relative;
@@ -41,7 +41,7 @@
   white-space: nowrap;
   font-size: 14px;
   font-weight: 500;
-  color: #664d03;
+  color: #d52121;
   padding-left: 100%;
   animation: scroll-right-to-left 12s linear infinite;
 }
