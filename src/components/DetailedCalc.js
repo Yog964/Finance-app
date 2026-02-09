@@ -212,7 +212,7 @@ const DetailedCalc = () => {
                                 onChange={handleInputChange}
                             />
                             <span className="radio-custom"></span>
-                            Below 60 years
+                            Below 60 year
                         </label>
                         <label className="radio-label">
                             <input
