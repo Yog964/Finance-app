@@ -13,7 +13,7 @@ function App() {
       <Navbar />
 <div class="dev-banner">
   <div class="marquee">
-    🚧 App under development — some features may be unavailable.
+    🚧 App under development 
   </div>
 </div>
       <main className="main-content">
