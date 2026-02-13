@@ -42,7 +42,7 @@
   font-size: 14px;
   font-weight: 500;
   color: #d52121;
-  padding-left: 100%;
+  padding-left: 99%;
   animation: scroll-right-to-left 12s linear infinite;
 }
 
