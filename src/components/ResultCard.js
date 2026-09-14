@@ -5,111 +5,102 @@ import { formatCurrency } from '../utils/taxCalculator';
 const ResultCard = ({ result, showBreakdown = false }) => {
     if (!result) return null;
 
+    const handleDownload = () => {
+        window.print();
+    };
+
     return (
-        <div className="result-card">
-            {/* New Distinct Header for Main Result */}
-            <div className="result-header">
-                <h2 className="result-title">Net Tax Payable</h2>
-                <div className="result-primary-value">{formatCurrency(result.netTaxPayable)}</div>
-                <div className="result-primary-label">Includes all taxes & cess</div>
+        <div className="result-card slip-format" id="tax-slip">
+            <div className="slip-header">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/5/55/Emblem_of_India.svg" alt="Emblem" className="slip-emblem" />
+                <div className="slip-title-container">
+                    <h2>INCOME TAX DEPARTMENT</h2>
+                    <h3>GOVERNMENT OF INDIA</h3>
+                    <h4>Tax Computation Slip</h4>
+                </div>
+                <div className="slip-action hide-on-print">
+                    <button onClick={handleDownload} className="btn-download">
+                        <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                        Download Slip
+                    </button>
+                </div>
             </div>
 
-            <div className="result-body">
-                <div className="result-grid">
-                    {result.grossIncome !== undefined && (
-                        <div className="result-item">
-                            <span className="result-label">Gross Income</span>
-                            <span className="result-value">{formatCurrency(result.grossIncome)}</span>
-                        </div>
-                    )}
+            <div className="slip-body">
+                <table className="slip-table">
+                    <tbody>
+                        {result.grossIncome !== undefined && (
+                            <tr>
+                                <td>Gross Income</td>
+                                <td className="amount-col">{formatCurrency(result.grossIncome)}</td>
+                            </tr>
+                        )}
+                        {result.totalDeductions !== undefined && (
+                            <tr>
+                                <td>Total Deductions</td>
+                                <td className="amount-col text-success">{formatCurrency(result.totalDeductions)}</td>
+                            </tr>
+                        )}
+                        <tr className="highlight-row">
+                            <td>Taxable Income</td>
+                            <td className="amount-col">{formatCurrency(result.taxableIncome)}</td>
+                        </tr>
+                        <tr>
+                            <td>Tax on Income</td>
+                            <td className="amount-col">{formatCurrency(result.totalTax)}</td>
+                        </tr>
+                        {result.rebate > 0 && (
+                            <tr>
+                                <td>Rebate u/s 87A</td>
+                                <td className="amount-col text-success">-{formatCurrency(result.rebate)}</td>
+                            </tr>
+                        )}
+                        {result.marginalRelief > 0 && (
+                            <tr>
+                                <td>Marginal Relief</td>
+                                <td className="amount-col text-success">-{formatCurrency(result.marginalRelief)}</td>
+                            </tr>
+                        )}
+                        <tr>
+                            <td>Health & Education Cess (4%)</td>
+                            <td className="amount-col">{formatCurrency(result.cess)}</td>
+                        </tr>
+                        <tr className="total-row">
+                            <td>Net Tax Payable</td>
+                            <td className="amount-col">{formatCurrency(result.netTaxPayable)}</td>
+                        </tr>
+                    </tbody>
+                </table>
 
-                    {result.totalDeductions !== undefined && (
-                        <div className="result-item">
-                            <span className="result-label">Total Deductions</span>
-                            <span className="result-value success">{formatCurrency(result.totalDeductions)}</span>
-                        </div>
-                    )}
-
-                    <div className="result-item">
-                        <span className="result-label">Taxable Income</span>
-                        <span className="result-value">{formatCurrency(result.taxableIncome)}</span>
-                    </div>
-                </div>
-
-                <div className="result-item">
-                    <span className="result-label">Total Tax</span>
-                    <span className="result-value">{formatCurrency(result.totalTax)}</span>
-                </div>
-
-                {result.rebate > 0 && (
-                    <div className="result-item">
-                        <span className="result-label">Rebate u/s 87A</span>
-                        <span className="result-value success">-{formatCurrency(result.rebate)}</span>
-                    </div>
-                )}
-
-                {result.marginalRelief > 0 && (
-                    <div className="result-item">
-                        <span className="result-label">Marginal Relief</span>
-                        <span className="result-value success">-{formatCurrency(result.marginalRelief)}</span>
-                    </div>
-                )}
-
-                <div className="result-item">
-                    <span className="result-label">Health & Education Cess (4%)</span>
-                    <span className="result-value">{formatCurrency(result.cess)}</span>
-                </div>
                 {showBreakdown && result.breakdown && result.breakdown.length > 0 && (
-                    <div className="tax-breakdown">
-                        <h3 className="breakdown-title">Tax Slab Breakdown</h3>
-                        <div className="breakdown-table">
-                            <div className="breakdown-header">
-                                <span>Income Range</span>
-                                <span>Rate</span>
-                                <span>Taxable Amount</span>
-                                <span>Tax</span>
-                            </div>
-                            {result.breakdown.map((slab, index) => (
-                                <div key={index} className="breakdown-row">
-                                    <span className="breakdown-range">{slab.range}</span>
-                                    <span className="breakdown-rate">{slab.rate}</span>
-                                    <span className="breakdown-amount">{formatCurrency(slab.taxableAmount)}</span>
-                                    <span className="breakdown-tax">{formatCurrency(slab.tax)}</span>
-                                </div>
-                            ))}
-                        </div>
+                    <div className="slip-section">
+                        <h4>Tax Slab Breakdown</h4>
+                        <table className="slip-table-alt">
+                            <thead>
+                                <tr>
+                                    <th>Income Range</th>
+                                    <th>Rate</th>
+                                    <th>Taxable Amount</th>
+                                    <th className="amount-col">Tax</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {result.breakdown.map((slab, index) => (
+                                    <tr key={index}>
+                                        <td>{slab.range}</td>
+                                        <td>{slab.rate}</td>
+                                        <td>{formatCurrency(slab.taxableAmount)}</td>
+                                        <td className="amount-col">{formatCurrency(slab.tax)}</td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
                     </div>
                 )}
-
-                {result.deductionBreakdown && (
-                    <div className="deduction-breakdown">
-                        <h3 className="breakdown-title">Deduction Breakdown</h3>
-                        <div className="deduction-list">
-                            {result.deductionBreakdown.section80C !== undefined && (
-                                <div className="deduction-item">
-                                    <span>Section 80C</span>
-                                    <span>{formatCurrency(result.deductionBreakdown.section80C)}</span>
-                                </div>
-                            )}
-                            {result.deductionBreakdown.section80D !== undefined && (
-                                <div className="deduction-item">
-                                    <span>Section 80D</span>
-                                    <span>{formatCurrency(result.deductionBreakdown.section80D)}</span>
-                                </div>
-                            )}
-                            {result.deductionBreakdown.otherDeductions !== undefined && result.deductionBreakdown.otherDeductions > 0 && (
-                                <div className="deduction-item">
-                                    <span>Other Deductions</span>
-                                    <span>{formatCurrency(result.deductionBreakdown.otherDeductions)}</span>
-                                </div>
-                            )}
-                            <div className="deduction-item">
-                                <span>Standard Deduction</span>
-                                <span>{formatCurrency(result.deductionBreakdown.standardDeduction)}</span>
-                            </div>
-                        </div>
-                    </div>
-                )}
+            </div>
+            
+            <div className="slip-footer">
+                <p>Note: This is a provisional computation. Please consult a tax advisor for official filing.</p>
             </div>
         </div>
     );

@@ -1,112 +1,50 @@
 import React, { useState } from 'react';
 import './App.css';
-import './components/Roadmap.css';
 import Navbar from './components/Navbar';
 import QuickCalc from './components/QuickCalc';
-import DetailedCalc from './components/DetailedCalc';
+import ContactUs from './components/ContactUs';
 
 function App() {
-  const [activeMode, setActiveMode] = useState('quick');
+  const [currentView, setCurrentView] = useState('calculator');
 
   return (
-    <div className="App">
-      <Navbar />
-<div class="dev-banner">
-  <div class="marquee">
-    🚧 App under development 
-  </div>
-</div>
-      <main className="main-content">
-        <div className="container">
-          {/* Mode Selection Tabs */}
-          <div className="mode-selector">
-            <button
-              className={`mode-tab ${activeMode === 'quick' ? 'active' : ''}`}
-              onClick={() => setActiveMode('quick')}
-            >
-              <span className="tab-icon">⚡</span>
-              <div className="tab-content">
-                <span className="tab-title">Quick Calculation</span>
-                <span className="tab-desc">Fast & Simple</span>
-              </div>
-            </button>
-            <button
-              className={`mode-tab ${activeMode === 'detailed' ? 'active' : ''}`}
-              onClick={() => setActiveMode('detailed')}
-            >
-              <span className="tab-icon">📋</span>
-              <div className="tab-content">
-                <span className="tab-title">Detailed Calculation</span>
-                <span className="tab-desc">Comprehensive Analysis</span>
-              </div>
-            </button>
-          </div>
-
-          {/* Calculator Content */}
-          <div className="calculator-content">
-            {activeMode === 'quick' ? <QuickCalc /> : <DetailedCalc />}
-          </div>
-
-          {/* Info Section */}
-          <div className="info-section">
-            <h3>ℹ️ Important Information</h3>
-            <div className="info-grid">
-              <div className="info-card">
-                <h4>📅 Financial Year</h4>
-                <p>New Regime: FY 2025-26 | Old Regime: FY 2024-25</p>
-              </div>
-              <div className="info-card">
-                <h4>🆕 New Tax Regime (FY 2025-26)</h4>
-                <p>Enhanced slabs with ₹4L exemption. Standard deduction: ₹75,000</p>
-              </div>
-              <div className="info-card">
-                <h4>📜 Old Tax Regime (FY 2024-25)</h4>
-                <p>Allows deductions under 80C, 80D, etc. Standard deduction: ₹50,000</p>
-              </div>
-              <div className="info-card">
-                <h4>💊 Health & Education Cess</h4>
-                <p>4% cess is applicable on the total tax amount</p>
-              </div>
-            </div>
-          </div>
-
-          {/* Upcoming Features Section */}
-          <div className="roadmap-section">
-            <div className="roadmap-header">
-              <h3>🚀 Upcoming Features</h3>
-              <span className="roadmap-badge">Coming Soon</span>
-            </div>
-            <p className="roadmap-desc">We are working on powerful new tools to help you manage your wealth.</p>
-
-            <div className="roadmap-grid">
-              <div className="roadmap-card">
-                <span className="roadmap-icon">📈</span>
-                <h4>Portfolio Tracking</h4>
-              </div>
-              <div className="roadmap-card">
-                <span className="roadmap-icon">💎</span>
-                <h4>Investment Tracker</h4>
-              </div>
-              <div className="roadmap-card">
-                <span className="roadmap-icon">🏦</span>
-                <h4>EMI / Loan Calculator</h4>
-              </div>
-              <div className="roadmap-card">
-                <span className="roadmap-icon">💡</span>
-                <h4>SIP Investment Planner</h4>
-              </div>
-              <div className="roadmap-card">
-                <span className="roadmap-icon">⚖️</span>
-                <h4>Mutual Fund Comparison</h4>
-              </div>
-            </div>
-          </div>
+    <div className="App gov-theme">
+      <Navbar setCurrentView={setCurrentView} />
+      
+      <main id="main" className="gov-main-content">
+        <div className="gov-container">
+          {currentView === 'calculator' ? <QuickCalc /> : <ContactUs />}
         </div>
       </main>
 
-      <footer className="footer">
-        <p>© 2026 Income Tax Calculator | For informational purposes only | @Yog964 </p>
-        <p className="footer-note">Please consult a tax professional for accurate tax planning</p>
+      <footer className="gov-footer">
+        <div className="gov-footer-content">
+          <div className="footer-left">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/5/55/Emblem_of_India.svg" alt="Emblem of India" className="footer-emblem" />
+            <div className="footer-logo-text">
+              <h4>Income Tax Department</h4>
+              <p>Government of India</p>
+            </div>
+          </div>
+          
+          <div className="footer-links">
+            <a href="#">Privacy Policy</a>
+            <span className="separator">|</span>
+            <a href="#">Terms & Conditions</a>
+            <span className="separator">|</span>
+            <a href="#">Contact Us</a>
+            <span className="separator">|</span>
+            <a href="#">Accessibility</a>
+            <span className="separator">|</span>
+            <a href="#">Helpdesk</a>
+          </div>
+        </div>
+
+        <div style={{ textAlign: 'center', marginTop: '25px', fontSize: '13px', opacity: 0.8, borderTop: '1px solid rgba(255,255,255,0.1)', paddingTop: '15px' }}>
+          <p style={{ margin: '0 0 5px 0' }}>For any issues or support, please contact: <a href="mailto:yogbari964@gmail.com" style={{ color: 'white', textDecoration: 'underline' }}>yogbari964@gmail.com</a></p>
+          <p style={{ margin: '0 0 5px 0' }}>Aristos Group is managing this app.</p>
+          <p style={{ margin: 0 }}>© 2026 Sushant Bari. All rights reserved.</p>
+        </div>
       </footer>
     </div>
   );

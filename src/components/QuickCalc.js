@@ -1,12 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import "./QuickCalc.css";
 import { calculateQuickTax } from "../utils/taxCalculator";
 import ResultCard from "./ResultCard";
-import { useEffect, useRef } from "react";
 
 const QuickCalc = () => {
   const resultRef = useRef(null);
- 
 
   const [formData, setFormData] = useState({
     annualIncome: "",
@@ -52,7 +50,8 @@ const QuickCalc = () => {
     setResult(null);
     setError("");
   };
- useEffect(() => {
+
+  useEffect(() => {
     if (result && resultRef.current) {
       resultRef.current.scrollIntoView({
         behavior: "smooth",
@@ -60,17 +59,25 @@ const QuickCalc = () => {
       });
     }
   }, [result]);
-  return (
-    <div className="quick-calc">
-      <div className="calc-header">
-        <h2>⚡ Quick Calculation</h2>
-        <p>Get instant tax calculation with minimal inputs</p>
-      </div>
 
-      <form onSubmit={handleCalculate} className="calc-form">
-        <div className="form-group">
+  return (
+    <div className="gov-form-container">
+      <div className="calc-header-gov">
+        <div className="calc-icon-gov">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="4" y="2" width="16" height="20" rx="2" ry="2"></rect><line x1="8" y1="6" x2="16" y2="6"></line><line x1="16" y1="10" x2="16" y2="10.01"></line><line x1="12" y1="10" x2="12" y2="10.01"></line><line x1="8" y1="10" x2="8" y2="10.01"></line><line x1="16" y1="14" x2="16" y2="14.01"></line><line x1="12" y1="14" x2="12" y2="14.01"></line><line x1="8" y1="14" x2="8" y2="14.01"></line><line x1="16" y1="18" x2="16" y2="18.01"></line><line x1="12" y1="18" x2="12" y2="18.01"></line><line x1="8" y1="18" x2="8" y2="18.01"></line></svg>
+        </div>
+        <div className="calc-title-gov">
+          <h2>Tax Calculator</h2>
+          <p>Calculate your estimated income tax based on the latest applicable rules.</p>
+        </div>
+      </div>
+      
+      <div className="calc-divider"></div>
+
+      <form onSubmit={handleCalculate} className="calc-form-gov">
+        <div className="form-group-gov">
           <label htmlFor="annualIncome">
-            Annual Income (₹) <span className="required">*</span>
+            Annual Income (₹) <span className="required-star">*</span>
           </label>
           <input
             type="number"
@@ -82,15 +89,16 @@ const QuickCalc = () => {
             min="0"
             step="1000"
             required
+            className="input-text-gov"
           />
         </div>
 
-        <div className="form-group">
+        <div className="form-group-gov">
           <label>
-            Age Group <span className="required">*</span>
+            Age Group <span className="required-star">*</span>
           </label>
-          <div className="radio-group">
-            <label className="radio-label">
+          <div className="radio-group-gov">
+            <label className="radio-label-gov">
               <input
                 type="radio"
                 name="ageGroup"
@@ -98,10 +106,9 @@ const QuickCalc = () => {
                 checked={formData.ageGroup === "below60"}
                 onChange={handleInputChange}
               />
-              <span className="radio-custom"></span>
-              Below 60 years
+              <span className="radio-text">Below 60 years</span>
             </label>
-            <label className="radio-label">
+            <label className="radio-label-gov">
               <input
                 type="radio"
                 name="ageGroup"
@@ -109,10 +116,9 @@ const QuickCalc = () => {
                 checked={formData.ageGroup === "60-80"}
                 onChange={handleInputChange}
               />
-              <span className="radio-custom"></span>
-              60 - 80 years
+              <span className="radio-text">60 - 80 years</span>
             </label>
-            <label className="radio-label">
+            <label className="radio-label-gov">
               <input
                 type="radio"
                 name="ageGroup"
@@ -120,48 +126,57 @@ const QuickCalc = () => {
                 checked={formData.ageGroup === "above80"}
                 onChange={handleInputChange}
               />
-              <span className="radio-custom"></span>
-              Above 80 years
+              <span className="radio-text">Above 80 years</span>
             </label>
           </div>
         </div>
 
-        <div className="form-group">
+        <div className="form-group-gov">
           <label>
-            Tax Regime <span className="required">*</span>
+            Tax Regime <span className="required-star">*</span>
           </label>
-          <div className="toggle-group">
-            <button
-              type="button"
-              className={`toggle-btn ${formData.regime === "new" ? "active" : ""}`}
-              onClick={() =>
-                setFormData((prev) => ({ ...prev, regime: "new" }))
-              }
-            >
-              New Regime
-            </button>
-            <button
-              type="button"
-              className={`toggle-btn ${formData.regime === "old" ? "active" : ""}`}
-              onClick={() =>
-                setFormData((prev) => ({ ...prev, regime: "old" }))
-              }
-            >
-              Old Regime
-            </button>
+          <div className="regime-group-gov">
+            <label className={`regime-box ${formData.regime === "new" ? "active" : ""}`}>
+              <input
+                type="radio"
+                name="regime"
+                value="new"
+                checked={formData.regime === "new"}
+                onChange={handleInputChange}
+                className="hidden-radio"
+              />
+              <div className="custom-radio">
+                <div className={`radio-inner ${formData.regime === "new" ? "checked" : ""}`}></div>
+              </div>
+              <span className="regime-text">New Tax Regime</span>
+            </label>
+            <label className={`regime-box ${formData.regime === "old" ? "active" : ""}`}>
+              <input
+                type="radio"
+                name="regime"
+                value="old"
+                checked={formData.regime === "old"}
+                onChange={handleInputChange}
+                className="hidden-radio"
+              />
+              <div className="custom-radio">
+                <div className={`radio-inner ${formData.regime === "old" ? "checked" : ""}`}></div>
+              </div>
+              <span className="regime-text">Old Tax Regime</span>
+            </label>
           </div>
         </div>
 
         {error && <div className="error-message">⚠️ {error}</div>}
 
-        <div className="form-actions">
-          <button type="submit" className="btn btn-primary">
+        <div className="form-actions-gov">
+          <button type="submit" className="btn-primary-gov">
             Calculate Tax
           </button>
           <button
             type="button"
             onClick={handleReset}
-            className="btn btn-secondary"
+            className="btn-secondary-gov"
           >
             Reset
           </button>
@@ -169,7 +184,7 @@ const QuickCalc = () => {
       </form>
 
       {result && (
-        <div ref={resultRef}>
+        <div ref={resultRef} className="result-wrapper">
           <ResultCard result={result} showBreakdown={true} />
         </div>
       )}
