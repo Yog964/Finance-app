@@ -8,6 +8,9 @@ const Navbar = ({ setCurrentView }) => {
   const [showToast, setShowToast] = useState(false);
 
   useEffect(() => {
+    // Set default zoom to 90% on initial load
+    document.body.style.zoom = '90%';
+
     const timer = setTimeout(() => {
       setShowBanner(false);
     }, 2000);
@@ -16,11 +19,11 @@ const Navbar = ({ setCurrentView }) => {
 
   const changeFontSize = (size) => {
     if (size === 'decrease') {
-      document.body.style.zoom = '90%';
+      document.body.style.zoom = '80%';
     } else if (size === 'increase') {
-      document.body.style.zoom = '110%';
-    } else {
       document.body.style.zoom = '100%';
+    } else {
+      document.body.style.zoom = '90%';
     }
   };
 

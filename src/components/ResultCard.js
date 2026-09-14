@@ -65,7 +65,7 @@ const ResultCard = ({ result, showBreakdown = false }) => {
                             <td>Health & Education Cess (4%)</td>
                             <td className="amount-col">{formatCurrency(result.cess)}</td>
                         </tr>
-                        <tr className="total-row">
+                        <tr className="total-row" style={{ color: '#d32f2f' }}>
                             <td>Net Tax Payable</td>
                             <td className="amount-col">{formatCurrency(result.netTaxPayable)}</td>
                         </tr>
