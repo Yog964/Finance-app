@@ -65,9 +65,9 @@ const Navbar = ({ setCurrentView }) => {
         </div>
         <nav className="gov-nav-menu">
           <ul className={`gov-nav-links ${isOpen ? 'open' : ''}`}>
-            <li><a href="#" onClick={(e) => { e.preventDefault(); setCurrentView('calculator'); }}>Home</a></li>
-            <li><a href="#main" className="active" onClick={() => setCurrentView('calculator')}>Tax Calculator</a></li>
-            <li><a href="#" onClick={handleComingSoon}>Tax Information <span className="arrow">▼</span></a></li>
+            <li><a href="#" onClick={(e) => { e.preventDefault(); setCurrentView('calculator'); setIsOpen(false); }}>Home</a></li>
+            <li><a href="#main" className="active" onClick={() => { setCurrentView('calculator'); setIsOpen(false); }}>Tax Calculator</a></li>
+            <li><a href="#" onClick={(e) => { e.preventDefault(); setCurrentView('tax-info'); setIsOpen(false); }}>Tax Information</a></li>
             <li><a href="#" onClick={handleComingSoon}>Downloads <span className="arrow">▼</span></a></li>
             <li><a href="#" onClick={handleComingSoon}>Help</a></li>
             <li><a href="#" onClick={(e) => { e.preventDefault(); setCurrentView('contact'); setIsOpen(false); }}>Contact Us</a></li>

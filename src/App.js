@@ -4,6 +4,7 @@ import './App.css';
 import Navbar from './components/Navbar';
 import QuickCalc from './components/QuickCalc';
 import ContactUs from './components/ContactUs';
+import TaxInformation from './components/TaxInformation';
 
 function App() {
   const [currentView, setCurrentView] = useState('calculator');
@@ -14,7 +15,9 @@ function App() {
       
       <main id="main" className="gov-main-content">
         <div className="gov-container">
-          {currentView === 'calculator' ? <QuickCalc /> : <ContactUs />}
+          {currentView === 'calculator' && <QuickCalc />}
+          {currentView === 'contact' && <ContactUs />}
+          {currentView === 'tax-info' && <TaxInformation />}
         </div>
       </main>
 
